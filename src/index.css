@@ -47,7 +47,7 @@ input {
   font-size: 1rem;
   color: white;
   background-color: #4c9aff;
-  border: none;
+  border: solid;
   border-radius: 8px;
   cursor: pointer;
   
@@ -59,7 +59,7 @@ input {
   font-size: 1rem;
   color: white;
   background-color: grey;
-  border: none;
+  border: solid;
   border-radius: 8px;
   cursor: pointer;
   margin:auto;
