@@ -1,14 +1,29 @@
-import { TodoI } from "./TodoApp";
 import TodoItem from "./TodoItem";
+import { TodoI } from "./TodoApp";
 
 interface TodoListProps {
   todos: TodoI[];
+  deleteTodo: (id: number) => void;
+  editTodo: (id: number, newTitle: string) => void;
+  onCheckChange: (id: number) => void;
 }
-const TodoList = ({ todos }: TodoListProps) => {
+
+const TodoList = ({
+  todos,
+  deleteTodo,
+  editTodo,
+  onCheckChange,
+}: TodoListProps) => {
   return (
     <div>
       {todos.map((todo) => (
-        <TodoItem todo={todo} />
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          deleteTodo={deleteTodo}
+          editTodo={editTodo}
+          onCheckChange={onCheckChange}
+        />
       ))}
     </div>
   );
