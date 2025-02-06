@@ -20,13 +20,13 @@ const TodoApp = () => {
   useEffect(() => {
     const savedTodos = localStorage.getItem("todos");
     if (savedTodos) {
-      setTodos(JSON.parse(savedTodos));
+      setTodos(JSON.parse(savedTodos)); //converts json strings to object/arrays
     }
   }, []);
 
   useEffect(() => {
     if (todos.length > 0) {
-      localStorage.setItem("todos", JSON.stringify(todos));
+      localStorage.setItem("todos", JSON.stringify(todos)); //reverse of parse
     }
   }, [todos]);
 
@@ -78,11 +78,11 @@ const TodoApp = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center  bg-gray-800 text-white py-10 px-4 sm:px-8 md:px-12 rounded-lg m">
-      <h1 className="text-4xl font-extrabold text-center mb-6 font-mono text-orange-400">
+    <div className="todo-app-wrapper flex flex-col items-center justify-center  bg-gray-800 text-white py-10 px-4 sm:px-8 md:px-12 rounded-lg m max-w-screen-lg max-h-screen=lg">
+      <h1 className="todo-header text-4xl font-extrabold text-center mb-6 font-mono text-orange-400">
         ToDo List
       </h1>
-      <div className="flex items-center space-x-4 mb-6">
+      <div className="todo-input-section flex items-center space-x-4 mb-6">
         <input
           className=" text-black w-full max-w-md p-4 rounded-lg border-2 border-gray-300 text-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#FF8303] focus:border-[#FF8303] transition duration-200"
           type="text"
@@ -91,7 +91,7 @@ const TodoApp = () => {
           onChange={onChange}
         />
         <button
-          className="bg-[#FF8303] text-white rounded-full px-6 py-4 text-2xl font-bold hover:bg-[#cc6702] transition duration-200"
+          className="todo-add-button bg-[#FF8303] text-white rounded-full px-6 py-4 text-2xl font-bold hover:bg-[#cc6702] transition duration-200"
           onClick={onAdd}
         >
           +
