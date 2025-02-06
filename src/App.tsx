@@ -3,7 +3,7 @@ import "./index.css";
 
 const App = () => {
   return (
-    <div className="bg-red-400">
+    <div className="flex justify-center items-center min-h-screen  py-2.5 px-8 ">
       <TodoApp />
     </div>
   );

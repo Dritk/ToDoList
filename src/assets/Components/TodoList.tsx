@@ -15,7 +15,7 @@ const TodoList = ({
   onCheckChange,
 }: TodoListProps) => {
   return (
-    <div>
+    <div className="div2">
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}
