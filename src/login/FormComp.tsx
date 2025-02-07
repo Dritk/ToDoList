@@ -1,3 +1,4 @@
+import { GoogleLogin } from "@react-oauth/google";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -78,6 +79,10 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
 
   const navigate = useNavigate();
 
+  const googleAuthSuccess = (credentialResponse: any) => {
+    console.log("Google Auth Success:", credentialResponse);
+  };
+
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto">
       <h1 className="text-3xl text-center font-bold mb-4">
@@ -156,6 +161,11 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
       >
         {formType === "signUp" ? "Sign Up" : "Log In"}
       </button>
+
+      <div className="mb-4 mt-4">
+        <p className="text-center text-gray-500">Or sign in with:</p>
+        <GoogleLogin onSuccess={googleAuthSuccess} />
+      </div>
 
       <p className="text-center mt-4">
         {formType === "signUp" ? (

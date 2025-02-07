@@ -1,6 +1,5 @@
 import TodoApp from "./components/TodoApp";
 import "./index.css";
-import Signup from "./login/Signup";
 
 const App = () => {
   return (
