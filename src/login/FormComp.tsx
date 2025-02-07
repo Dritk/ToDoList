@@ -13,6 +13,7 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
     password: "",
     termsAccepted: false,
   });
+
   const [errors, setErrors] = useState({
     name: "",
     email: "",
@@ -21,7 +22,7 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
   });
 
   const validateForm = () => {
-    let formValid = true;
+    let formIsValid = true;
     const newErrors = {
       name: "",
       email: "",
@@ -31,32 +32,32 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
 
     if (formType === "signUp" && !formData.name.trim()) {
       newErrors.name = "Name is required.";
-      formValid = false;
+      formIsValid = false;
     }
 
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
-      formValid = false;
+      formIsValid = false;
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid.";
-      formValid = false;
+      formIsValid = false;
     }
 
     if (!formData.password.trim()) {
       newErrors.password = "Password is required.";
-      formValid = false;
+      formIsValid = false;
     } else if (formData.password.length < 6) {
       newErrors.password = "Password must be at least 6 characters.";
-      formValid = false;
+      formIsValid = false;
     }
 
     if (formType === "signUp" && !formData.termsAccepted) {
       newErrors.termsAccepted = "You must agree to the terms & conditions.";
-      formValid = false;
+      formIsValid = false;
     }
 
     setErrors(newErrors);
-    return formValid;
+    return formIsValid;
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,12 +81,12 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto">
       <h1 className="text-3xl text-center font-bold mb-4">
-        {formType === "signUp" ? "Get Started Now" : "Sign In"}
+        {formType === "signUp" ? "Sign Up Now" : "Welcome back!"}
       </h1>
 
       {formType === "signUp" && (
         <div className="mb-4">
-          <label htmlFor="name" className="block text-lg mb-2">
+          <label htmlFor="name" className="label-text">
             Name
           </label>
           <input
@@ -94,16 +95,14 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
             name="name"
             value={formData.name}
             onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded-lg"
+            className="input-container"
           />
-          {errors.name && (
-            <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-          )}
+          {errors.name && <p className="error-text">{errors.name}</p>}
         </div>
       )}
 
       <div className="mb-4">
-        <label htmlFor="email" className="block text-lg mb-2">
+        <label htmlFor="email" className="label-text">
           Email
         </label>
         <input
@@ -112,15 +111,13 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
           name="email"
           value={formData.email}
           onChange={handleInputChange}
-          className="w-full p-2 border border-gray-300 rounded-lg"
+          className="input-container"
         />
-        {errors.email && (
-          <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-        )}
+        {errors.email && <p className="error-text">{errors.email}</p>}
       </div>
 
       <div className="mb-6">
-        <label htmlFor="password" className="block text-lg mb-2">
+        <label htmlFor="password" className="label-text">
           Password
         </label>
         <input
@@ -129,11 +126,9 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
           name="password"
           value={formData.password}
           onChange={handleInputChange}
-          className="w-full p-2 border border-gray-300 rounded-lg"
+          className="input-container"
         />
-        {errors.password && (
-          <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-        )}
+        {errors.password && <p className="error-text">{errors.password}</p>}
       </div>
 
       {formType === "signUp" && (
@@ -147,10 +142,10 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
             className="accent-orange-400"
           />
           <label htmlFor="terms" className="ml-2">
-            I agree to the terms & policy
+            I agree to the terms & conditions
           </label>
           {errors.termsAccepted && (
-            <p className="text-red-500 text-sm mt-1">{errors.termsAccepted}</p>
+            <p className="error-text">{errors.termsAccepted}</p>
           )}
         </div>
       )}
@@ -159,20 +154,8 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
         type="submit"
         className="w-full py-3 bg-green-500 text-white rounded-lg"
       >
-        {formType === "signUp" ? "Sign Up" : "Sign In"}
+        {formType === "signUp" ? "Sign Up" : "Log In"}
       </button>
-
-      <div className="flex flex-row space-x-4 m-2">
-        <button className="w-full py-3 rounded-lg border border-black flex items-center justify-center space-x-2">
-          <img src="./google.png" alt="Google logo" className="h-5" />
-          <span>Sign in with Google</span>
-        </button>
-
-        <button className="w-full py-3 rounded-lg border border-black flex items-center justify-center space-x-2">
-          <img src="./apple.png" alt="Apple logo" className="h-5" />
-          <span>Sign in with Apple</span>
-        </button>
-      </div>
 
       <p className="text-center mt-4">
         {formType === "signUp" ? (
@@ -182,7 +165,7 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
               onClick={() => navigate("/signin")}
               className="text-blue-500"
             >
-              Sign In
+              Log In
             </button>
           </>
         ) : (

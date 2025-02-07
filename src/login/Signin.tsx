@@ -1,13 +1,26 @@
+import { useNavigate } from "react-router-dom";
 import Form from "./FormComp";
 
 const Signin = () => {
-  const handleSignIn = (data: {
-    name: string;
-    email: string;
-    password: string;
-  }) => {
-    alert("Sign In successful!");
-    console.log(data);
+  const navigate = useNavigate();
+
+  const auth = (email: string, password: string) => {
+    const mockEmail = "hello@gmail.com";
+    const mockPassword = "password123";
+
+    if (email === mockEmail && password === mockPassword) return true;
+    else return false;
+  };
+
+  const handleSignIn = (data: { email: string; password: string }) => {
+    const { email, password } = data;
+
+    if (auth(email, password)) {
+      alert("Sign In successful!");
+      navigate("/TodoApp");
+    } else {
+      alert("Invalid email or password! Please try again.");
+    }
   };
 
   return (
@@ -17,7 +30,7 @@ const Signin = () => {
       </div>
 
       <div
-        className="w-1/2 p-8 flex bg-cover"
+        className="bg-img"
         style={{ backgroundImage: 'url("./rightbg.png")' }}
       ></div>
     </div>
