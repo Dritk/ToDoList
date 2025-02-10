@@ -78,38 +78,40 @@ const TodoApp = () => {
   };
 
   return (
-    <div className="todo-app-wrapper flex flex-col items-center justify-center  bg-gray-800 text-white py-10 px-4 sm:px-8 md:px-12 rounded-lg m max-w-screen-lg max-h-screen=lg">
-      <h1 className="todo-header text-4xl font-extrabold text-center mb-6 font-mono text-orange-400">
-        ToDo List
-      </h1>
-      <div className="todo-input-section flex items-center space-x-4 mb-6">
-        <input
-          className=" text-black w-full max-w-md p-4 rounded-lg border-2 border-gray-300 text-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#FF8303] focus:border-[#FF8303] transition duration-200"
-          type="text"
-          placeholder="Enter your To-Do List"
-          value={todo.title}
-          onChange={onChange}
+    <div className="todo-app-wrapper flex justify-center items-center min-h-screen ">
+      <div className="todo-app flex flex-col items-center justify-center h-auto bg-gray-800 text-white py-10 px-4 sm:px-8 md:px-12 rounded-lg">
+        <h1 className="todo-header text-4xl font-extrabold text-center mb-6 font-mono text-orange-400">
+          ToDo List
+        </h1>
+        <div className="todo-input-section flex items-center space-x-4 mb-6">
+          <input
+            className="text-black w-full max-w-md p-4 rounded-lg border-2 border-gray-300 text-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#FF8303] focus:border-[#FF8303] transition duration-200"
+            type="text"
+            placeholder="Enter your To-Do List"
+            value={todo.title}
+            onChange={onChange}
+          />
+          <button
+            className="todo-add-button bg-[#FF8303] text-white rounded-full px-6 py-4 text-2xl font-bold hover:bg-[#cc6702] transition duration-200"
+            onClick={onAdd}
+          >
+            +
+          </button>
+        </div>
+        <TodoList
+          todos={todos}
+          deleteTodo={deleteTodo}
+          editTodo={editTodo}
+          onCheckChange={onCheckChange}
         />
-        <button
-          className="todo-add-button bg-[#FF8303] text-white rounded-full px-6 py-4 text-2xl font-bold hover:bg-[#cc6702] transition duration-200"
-          onClick={onAdd}
-        >
-          +
-        </button>
-      </div>
-      <TodoList
-        todos={todos}
-        deleteTodo={deleteTodo}
-        editTodo={editTodo}
-        onCheckChange={onCheckChange}
-      />
-      <div className="mt-8">
-        <button
-          onClick={onReset}
-          className="bg-red-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-red-500 transition duration-200"
-        >
-          Reset
-        </button>
+        <div className="mt-8">
+          <button
+            onClick={onReset}
+            className="bg-red-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-red-500 transition duration-200"
+          >
+            Reset
+          </button>
+        </div>
       </div>
     </div>
   );

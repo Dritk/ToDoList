@@ -7,6 +7,7 @@ import Signup from "./login/Signup.tsx";
 import Signin from "./login/Signin.tsx";
 import TodoApp from "./components/TodoApp.tsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import Login from "./login/apiForm.tsx";
 
 const CLIENT_ID =
   "1051054790619-e3l0a1rugo10svqp5snb8hq8v2lsu77e.apps.googleusercontent.com";
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
   { path: "/signup", element: <Signup /> },
   { path: "/signin", element: <Signin /> },
   { path: "/TodoApp", element: <TodoApp /> },
+  { path: "/apiForm", element: <Login /> },
 ]);
 
 createRoot(document.getElementById("root")!).render(

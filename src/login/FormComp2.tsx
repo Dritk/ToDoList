@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import getValidationSchema from "../components/validation/formValidation";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 interface FormProps {
   formType: "signUp" | "signIn";
@@ -30,6 +31,7 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
 
   const googleAuthSuccess = (credentialResponse: any) => {
     console.log("Google Auth Success:", credentialResponse);
+    navigate("/TodoApp");
   };
 
   return (
@@ -86,7 +88,7 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
           onClick={() => setShowPassword((prev) => !prev)}
           className="absolute right-3 top-9 text-gray-500"
         >
-          {showPassword ? "😐" : "😑"}
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
         </button>
         {errors.password && (
           <p className="text-red-500">{errors.password.message}</p>

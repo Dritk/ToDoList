@@ -4,8 +4,8 @@ import Form from "./FormComp2";
 const Signin = () => {
   const navigate = useNavigate();
 
+  const storedUser = localStorage.getItem("user");
   const handleSignIn = (data: { email: string; password: string }) => {
-    const storedUser = localStorage.getItem("user");
     if (storedUser) {
       const { email: savedEmail, password: savedPassword } =
         JSON.parse(storedUser);
