@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import FormComp from "./FormComp";
+import FormComp from "./FormComp2";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -8,8 +8,8 @@ const Signup = () => {
     email: string;
     password: string;
   }) => {
+    localStorage.setItem("user", JSON.stringify(data));
     navigate("/signin");
-    console.log(data);
   };
 
   return (

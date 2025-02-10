@@ -1,25 +1,22 @@
 import { useNavigate } from "react-router-dom";
-import Form from "./FormComp";
+import Form from "./FormComp2";
 
 const Signin = () => {
   const navigate = useNavigate();
 
-  const auth = (email: string, password: string) => {
-    const mockEmail = "hello@gmail.com";
-    const mockPassword = "password123";
-
-    if (email === mockEmail && password === mockPassword) return true;
-    else return false;
-  };
-
   const handleSignIn = (data: { email: string; password: string }) => {
-    const { email, password } = data;
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const { email: savedEmail, password: savedPassword } =
+        JSON.parse(storedUser);
 
-    if (auth(email, password)) {
-      alert("Sign In successful!");
-      navigate("/TodoApp");
+      if (data.email === savedEmail && data.password === savedPassword) {
+        navigate("/TodoApp");
+      } else {
+        alert("Invalid email or password! Please try again.");
+      }
     } else {
-      alert("Invalid email or password! Please try again.");
+      alert("Credentials don't match");
     }
   };
 

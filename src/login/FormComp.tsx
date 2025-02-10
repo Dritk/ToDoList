@@ -163,7 +163,10 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
       </button>
 
       <div className="mb-4 mt-4">
-        <p className="text-center text-gray-500">Or sign in with:</p>
+        <p className="text-center text-gray-500">Or</p>
+      </div>
+
+      <div>
         <GoogleLogin onSuccess={googleAuthSuccess} />
       </div>
 
