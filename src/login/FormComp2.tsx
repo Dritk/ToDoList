@@ -5,6 +5,8 @@ import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import getValidationSchema from "../components/validation/formValidation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import InputField from "../components/common/InputField";
+import CheckboxField from "../components/common/CheckboxField";
 
 interface FormProps {
   formType: "signUp" | "signIn";
@@ -45,72 +47,53 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
 
       {formType === "signUp" && (
         <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-700">
-            Name
-          </label>
-          <input
-            type="text"
+          <InputField
+            label="Name"
             id="name"
-            {...register("name")}
-            className="border border-gray-300 rounded-md w-full px-3 py-2"
-            autoComplete="off"
+            register={register}
+            error={errors.name?.message}
           />
-          {errors.name && <p className="text-red-500">{errors.name.message}</p>}
         </div>
       )}
 
       <div className="mb-4">
-        <label htmlFor="email" className="block text-gray-700">
-          Email
-        </label>
-        <input
-          type="email"
+        <InputField
+          label="Email"
           id="email"
-          {...register("email")}
-          className="border border-gray-300 rounded-md w-full px-3 py-2"
-          autoComplete="off"
+          type="email"
+          register={register}
+          error={errors.email?.message}
         />
-        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
       </div>
 
       <div className="mb-6 relative">
-        <label htmlFor="password" className="block text-gray-700">
-          Password
-        </label>
-        <input
-          type={showPassword ? "text" : "password"}
+        <InputField
+          label="Password"
           id="password"
-          {...register("password")}
-          className="border border-gray-300 rounded-md w-full px-3 py-2 pr-10"
+          type={showPassword ? "text" : "password"}
+          register={register}
+          error={errors.password?.message}
         />
+
         <button
           type="button"
           onClick={() => setShowPassword((prev) => !prev)}
-          className="absolute right-3 top-9 text-gray-500"
+          className="absolute right-3 top-9 text-gray-500 "
         >
           {showPassword ? <FaEyeSlash /> : <FaEye />}
         </button>
-        {errors.password && (
-          <p className="text-red-500">{errors.password.message}</p>
-        )}
       </div>
 
-      {formType === "signUp" && (
-        <div className="mb-6 flex items-center">
-          <input
-            type="checkbox"
-            id="terms"
-            {...register("termsAccepted")}
-            className="accent-orange-400"
+      <div className="mb-4 flex items-center">
+        {formType === "signUp" && (
+          <CheckboxField
+            id="termsAccepted"
+            label="I agree to the terms & conditions"
+            register={register}
+            error={errors.termsAccepted?.message}
           />
-          <label htmlFor="terms" className="ml-2 text-gray-700">
-            I agree to the terms & conditions
-          </label>
-        </div>
-      )}
-      {errors.termsAccepted && (
-        <p className="text-red-500">{errors.termsAccepted.message}</p>
-      )}
+        )}
+      </div>
 
       <button
         type="submit"

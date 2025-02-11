@@ -1,4 +1,3 @@
-import TodoApp from "./components/TodoApp";
 import "./index.css";
 import Signup from "./login/Signup";
 
