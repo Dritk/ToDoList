@@ -7,6 +7,7 @@ import getValidationSchema from "../components/validation/formValidation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import InputField from "../components/common/InputField";
 import CheckboxField from "../components/common/CheckboxField";
+import { motion } from "motion/react";
 
 interface FormProps {
   formType: "signUp" | "signIn";
@@ -37,7 +38,9 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
   };
 
   return (
-    <form
+    <motion.form
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
       onSubmit={handleSubmit(onFormSubmit)}
       className="w-full max-w-md mx-auto"
     >
@@ -95,12 +98,14 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
         )}
       </div>
 
-      <button
+      <motion.button
         type="submit"
         className="w-full py-3 bg-green-500 text-white rounded-lg"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
       >
         {formType === "signUp" ? "Sign Up" : "Log In"}
-      </button>
+      </motion.button>
 
       <div className="mb-4 mt-4">
         <p className="text-center text-gray-500">Or</p>
@@ -136,7 +141,7 @@ const Form: React.FC<FormProps> = ({ formType, onSubmit }) => {
           </>
         )}
       </p>
-    </form>
+    </motion.form>
   );
 };
 
